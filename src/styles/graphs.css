@@ -1,0 +1,63 @@
+.graphs--container {
+    height: calc(100dvh - 6em);
+    border: 1px solid #D7D7D7;
+    border-radius: 8px;
+}
+
+.graphs--header {
+    padding: 1em 1em 0 1em;
+
+    display: flex;
+    align-items: center;
+}
+
+.graphs--filters {
+    margin-left: auto;
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+}
+
+.graphs--header > p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #426C2A;
+}
+
+.graphs--graph-body-wrapper {
+    padding: 1em;
+}
+
+.graphs--tab-navs ul {
+    display: flex;
+    list-style: none;
+}
+
+.graphs--tab-navs ul li {
+    list-style: none;
+    cursor: pointer;
+    background-color: #fff;
+    color: var(--dark-black);
+    outline: none;
+    margin: 0;
+    padding: 0.75rem;
+}
+
+.graphs--tab-navs ul li.active {
+    background-color: #426C2A;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.graphs--tab-navs ul li:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.graphs--tab-navs ul li:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+.graphs--chart-area {
+    list-style: none;
+}

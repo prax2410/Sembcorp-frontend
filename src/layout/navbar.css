@@ -1,0 +1,104 @@
+/* ************************************************* */
+/* Navbar */
+/* ************************************************* */
+.navbar-wrapper {
+    position: fixed;
+    z-index: 10;
+    
+    width: 100%;
+    background-color: #fff;
+
+    display: flex;
+    gap: 0.25%;
+    align-items: center;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 4rem;
+    background-color: #fff;
+}
+
+
+
+/* Logo section */
+.tata-logo {
+    height: 3.5em;
+}
+
+/* toggle active classes */
+.tab-is-active {
+    color: #1C4C00;
+    font-weight: 700;
+
+    position: relative;
+}
+
+.tab-is-active::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    
+    border-top: 4px solid #66B538;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.tab-is-not-active {
+    text-decoration: none;
+    color: #1C4C00;
+    font-weight: 400;
+}
+
+/* navbar menus */
+.navbar--logo {
+    text-decoration: none;
+    cursor: pointer;
+}
+.menu-items {
+    margin: auto 2% auto auto;
+    width: 50%;
+}
+
+.menu-items ul{
+    list-style: none;
+    display: flex;
+    gap: 2.5%;
+    justify-content: flex-end;
+}
+
+.menu-items ul a {
+    text-decoration: none;
+}
+
+/* settings and profile buttons */
+.navbar-buttons {
+    height: 4.5rem;
+    width: 6rem;
+    padding: 0 1%;
+    margin: 0;
+    border: none;
+    outline: none;
+    background-color: #1f1f1f;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Clock */
+.navbar--clock-container {
+    color: #222;
+    font-weight: 400;
+    font-size: 16px;
+    margin-right: 1em;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.navbar--clock-container h3{
+    font-weight: 700;
+}
