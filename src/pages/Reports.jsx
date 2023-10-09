@@ -19,15 +19,15 @@ const Reports = () => {
 
     const defaultDate = `${year}-${month}-${day}`;
     
-    const date = new Date();
-    const showTime = date.getHours()
-        + ':' + date.getMinutes()
-        + ":" + date.getSeconds();
+    // const date = new Date();
+    // const showTime = date.getHours()
+    //     + ':' + date.getMinutes()
+    //     + ":" + date.getSeconds();
     
     const [filterCardIsOpen, setFilterCardIsOpen] = useState(false);
     const [filterValues, setFilterValues] = useState({
         periodFrom: defaultDate + ' 00:01:00',
-        periodTo: defaultDate + ' ' + showTime,
+        periodTo: defaultDate + ' 01:00:00',
     });
     const [filteredData, setFilteredData] = useState([])
     const [loading, setLoading] = useState(true);
@@ -214,6 +214,11 @@ const Reports = () => {
         e.preventDefault();
 
         if (periodFrom !== '' && periodTo !== '') {
+            const popup = document.createElement('div');
+            popup.classList.add('popup');
+            popup.innerText = 'Please wait, download is starting...';
+            document.body.appendChild(popup);
+
             const fetchRequestBody = {
                 filteredDateFrom: periodFrom,
                 filteredDateTo: periodTo,
@@ -226,7 +231,7 @@ const Reports = () => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(fetchRequestBody)
-            })
+            });
             const result = await res.json();
             filename = result.filename;
 
@@ -241,14 +246,55 @@ const Reports = () => {
                         a.href = url;
                         a.download = filename;
                         a.click();
+                        document.body.removeChild(popup); // Remove the popup after download is complete
                     } else {
+                        document.body.removeChild(popup); // Remove the popup in case of error
                         throw new Error('Error downloading file.');
                     }
                 });
         } else {
-            alert("Select machines and dates from filter")
+            alert("Select machines and dates from filter");
         }
     };
+// const handleDownloadButton = async (e) => {
+    //     e.preventDefault();
+
+    //     if (periodFrom !== '' && periodTo !== '') {
+    //         const fetchRequestBody = {
+    //             filteredDateFrom: periodFrom,
+    //             filteredDateTo: periodTo,
+    //             selectedMachine: [selectedMachine.name.toLowerCase()]
+    //         };
+
+    //         const res = await fetch(`${API}/generateFileAndGetFilename`, {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify(fetchRequestBody)
+    //         })
+    //         const result = await res.json();
+    //         filename = result.filename;
+
+    //         fetch(`${API}/downloadReport?filename=${filename}`, {
+    //             method: "GET"
+    //         })
+    //             .then(async (res) => {
+    //                 if (res.ok) {
+    //                     const blob = await res.blob();
+    //                     const url = window.URL.createObjectURL(blob);
+    //                     const a = document.createElement('a');
+    //                     a.href = url;
+    //                     a.download = filename;
+    //                     a.click();
+    //                 } else {
+    //                     throw new Error('Error downloading file.');
+    //                 }
+    //             });
+    //     } else {
+    //         alert("Select machines and dates from filter")
+    //     }
+    // };
     // ----------------------------------------------------------------------------------------------------
 
     return (
